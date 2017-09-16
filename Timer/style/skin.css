@@ -1,0 +1,69 @@
+body,html{
+    width: 100%;
+    height: 100%;
+}
+.g-content{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-size: 1366px 768px;
+    background-repeat: no-repeat;
+}
+.lichun{
+    background-image: url(../img/lichun.jpg);
+}
+.lixia{
+    background-image: url(../img/lixia.jpg);
+}
+.g-content .time{
+    /*	width: 500px;
+        height: 200px;*/
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    /*margin-top: 100px;*/
+    background-color: transparent;
+    text-align: center;
+}
+.time .intime{
+    font-size: 30px;
+    color: #FFF;
+}
+button{
+    position: absolute;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    border:1px solid;
+    border-radius: 10px;
+    background-color: transparent;
+    color: #FFF;
+}
+.g-content .u-bntLichun{
+    top: 5px;
+}
+.g-content .u-bntLixia{
+    top:25px;
+}
+.g-content .setTime{
+    position: absolute;
+    right: 15px;
+    top: 50px;
+    width: 30px;
+    background-color: transparent;
+    color: #FFF;
+    outline: none;
+}
+.g-content .minutes{
+    top:70px;
+}
+.g-content .timeformate{
+    color: #FFF;
+    position: absolute;
+    right: 1px;
+    top:52px;
+}
+.g-content .mins{
+    top:72px;
+}
