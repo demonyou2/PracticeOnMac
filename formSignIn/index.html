@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表单注册</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/Signin.css">
+</head>
+<body>
+<form action="">
+    <!-- name -->
+    <div class="u-name">
+        <label for="">
+            <span>登陆名：</span>
+            <input type="text" />
+        </label>
+        <p class="msg"><i class="err"></i>请输入5-25个字符，中文占2个字符</p>
+        <p class="count">0个字符</p>
+    </div>
+    <!-- passwords -->
+    <div class="u-password">
+        <label for="">
+            <span>密 码：</span>
+            <input type="text" />
+        </label>
+        <p class="msg"><i class="err"></i>6-16个字符,请使用字母和数字</p>
+        <p class="ems"><em class="actived">弱</em><em>中</em><em>强</em></p>
+    </div>
+    <!-- password checking -->
+    <div class="u-passwordAgain">
+        <label for="">
+            <span>确认密码：</span>
+            <input type="text" disabled="" />
+        </label>
+        <p class="msg"><i class="err"></i>请再次输入</p>
+    </div>
+    <!-- pictures checking -->
+    <div class="u-img">
+        <label for="">
+            <span>验证码：</span>
+            <input type="text" />
+        </label>
+        <img src="imgs/1.png" alt="checking">
+    </div>
+    <!-- button -->
+    <button>同意协议并注册</button>
+    <script src="js/singIn.js"></script>
+</form>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/webcompany.css">
+    <title>企业网站实例</title>
+    <!-- 引入myFocus插件 -->
+    <script src="js/myfocus-2.0.1.min.js"></script>
+    <script src="js/mf-pattern/mF_dleung.js"></script>
+    <link rel="stylesheet" href="js/mf-pattern/mF_dleung.css">
+    <script>
+        myFocus.set({
+            id: "boxId"
+        })
+    </script>
+</head>
+<body>
+    <div class="g-head">
+        <div class="f-textaligncenter">
+            <ul>
+                <li><a href="#">设为首页</a></li>
+                <li><a href="#">加入收藏</a></li>
+                <li><a href="#">联系我们</a></li>
+            </ul>
+        </div>
+    </div><!-- g-head end -->
+    <div class="g-body">
+        <div class="m-logo">
+            <div class="u-logo-left">
+                <img src="imges/logo.jpg" alt="logo图片">
+            </div>
+            <div class="u-tel-right">
+                <img src="imges/tel.jpg" alt="电话" /><span>24小时服务热线：</span><span class="num">1234567890</span>
+            </div>
+        </div><!-- logo end -->
+        <div class="m-nav">
+            <div class="subnav-left">
+                <ul>
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">关于慕课</a></li>
+                    <li><a href="#">新闻动态</a></li>
+                    <li><a href="#">课程中心</a></li>
+                    <li><a href="#">在线课程</a></li>
+                    <li><a href="#">人才招聘</a></li>
+                </ul>
+            </div>
+            <div class="serach-right">
+                <form action="">
+                    <input type="text" class="serch"/>
+                </form>
+            </div>
+        </div><!-- nav end -->
+        <div class="m-ads" id="boxId"><!-- 此处为MyFocus固定到结构，id必须与MyFocus.seet()中的id一致 -->
+            <!--<div class="loading"><img src="imges/loading.gif" alt="图片加载中"></div>--><!-- 当网速慢时加上，良好的提示 -->
+            <div class="pic"><!-- MyFocus固定结构，固定的class -->
+                <ul>
+                    <li><a href="#"><img src="imges/ad2.jpg"  /></a></li>
+                    <li><a href="#"><img src="imges/ad3.jpg"  /></a></li>
+                    <li><a href="#"><img src="imges/ad4.jpg"  /></a></li>
+                </ul>
+            </div>
+        </div><!-- 焦点图end -->
+        <div class="g-main">
+            <div class="m-news">
+                <div class="news-title">
+                    <h2>新闻中心</h2><span><a href="#">More&gt;&gt;</a></span>
+                </div>
+                <div class="news-pic">
+                    <img src="imges/news.jpg" alt="pic" />
+                    <ul>
+                        <li><a href="#">520 女神喊你来表白</a></li>
+                        <li><a href="#">活动时间：5月20日-5月25日</a></li>
+                        <li><a href="#">获奖公布时间：5月26日</a></li>
+                        <li><a href="#">More&gt;&gt;</a></li>
+                    </ul>
+                </div>
+                <div class="news-lists">
+                    <ul>
+                        <li><span>2014-06-01</span><a href="#">【慕课访谈 用户篇】“有为屌丝”在路上</a></li>
+                        <li><span>2014-06-01</span><a href="#">【有奖活动】给父亲的三行书信</a></li>
+                        <li><span>2014-05-30</span><a href="#">《程序猿，请晒出你的童年》活动获奖公告</a></li></li>
+                        <li><span>2014-05-30</span><a href="#">【慕课访谈】破茧成蝶————美女程序猿的锐变史</a></li>
+                    </ul>
+                </div>
+            </div><!-- news end -->
+            <div class="m-course">
+                <div class="course-title">
+                    <h2>课程中心</h2><span><a href="#">More&gt;&gt;</a></span>
+                </div>
+                <div class="course-pic">
+                    <img src="imges/QQ截图20140531173247.jpg" alt="">
+                    <h2>css圆角进化论</h2>
+                    <p>css圆角的实现，经历来三大发展阶段：背景图片方式，css2.0+HTML标签模拟
+                    、css3.0圆角属性。本案例详细讲解来每一种实现方式</p>
+                </div>
+                <div class="course-lists">
+                    <ul>
+                        <li><a href="#">PHP开发</a></li>
+                        <li><a href="#">前端开发</a></li>
+                        <li><a href="#">JAVA开发</a></li>
+                        <li><a href="#">Android开发</a></li>
+                    </ul>
+                </div>
+            </div><!-- course end -->
+            <div class="m-sider">
+                <div class="sider-title">
+                    <h2>媒体聚焦</h2><span><a href="#">More&gt;&gt;</a></span>
+                </div>
+                <div class="video">
+                    <video src=".ogg" controls="controls"></video>
+                </div>
+                <div class="ads">
+                    <img src="imges/app.jpg" alt="ads">
+                </div>
+            </div><!-- sider end -->
+        </div>
+    </div><!-- gbody end -->
+    <div class="g-footer">
+        <div class="f-textenter">
+            <ul>
+                <li><a href="#">关于</a>
+                    <ul>
+                        <li><a href="#">品牌故事</a></li>
+                        <li><a href="#">联系我们</a></li>
+                        <li><a href="#">加入我们</a></li>
+                        <li><a href="#">版权声明</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">课程</a>
+                    <ul>
+                        <li><a href="#">PHP开发</a></li>
+                        <li><a href="#">前端开发</a></li>
+                        <li><a href="#">JAVA开发</a></li>
+                        <li><a href="#">Android开发</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">关注</a>
+                    <ul>
+                        <li><a href="#">新浪微博</a></li>
+                        <li><a href="#">腾讯微博</a></li>
+                        <li><a href="#">企业微信</a></li>
+                        <li><a href="#">QQ空间</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">留言</a>
+                    <ul>
+                        <li><a href="#">意见反馈</a></li>
+                        <li><a href="#">问题留言</a></li>
+                        <li><a href="#">媒体联系</a></li>
+                        <li><a href="#">在线客服</a></li>
+                    </ul>
+                </li>
+                <li><img src="imges/weixin.png" alt="pic"><a href="">微信关注</a>
+                    <ul>
+                        <li><img src="imges/qrcode.jpg" alt="pic"></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div><!-- footer end -->
+</body>
+</html>
