@@ -1,0 +1,94 @@
+<!-- 选项卡切换的效果 -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;margin: 0;
+        }
+        body,html{
+            width: 100%;
+            height: 100%;
+        }
+        .g-body{margin: 0 auto;width: 1000px;height: 1000px;text-align: center;}
+        .g-body .m-tag{width: 500px;height: 50px;margin-top: 10px;}
+        .clearfix:after{content: '.';clear: both;overflow: hidden;display: none;}
+        li{
+            width: 100px;height: 50px;border: 1px solid grey;
+            float: left;list-style-type: none;line-height: 50px;
+            margin-right: 10px;
+            border-bottom: none;
+        }
+        .u-content{
+            width: 500px;
+            height: 200px;
+            border: 1px solid #000;
+            border-top: 1px solid #f00;
+            text-align: left;
+        }
+        .u-content p:first-child{
+            margin-top: 2px;
+            line-height: 20px;
+        }
+        .actived{border-top: 1px solid #f00;border-bottom: 1px solid #fff;
+            background-color: #fff;}
+        .tag-actived{
+            display: block;
+        }
+        .tag-hidden{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="g-body">
+        <ul class="m-tag clearfix">
+            <li index ="1" class="actived">房产</li>
+            <li index ="2">家居</li>
+            <li index ="3">二手房</li>
+        </ul>
+        <div class="u-content">
+            <div class="tag-actived">
+            <p>275万购昌平邻铁三居 总价20万买一居</p><br/>
+            <p>200万内购五环三居 140万安家东三环</p><br/>
+            <p>北京首现零首付楼盘 53万购东5环50平</p><br/>
+            <p>京楼盘直降5000 中信府 公园楼王现房</p><br/>
+            </div>
+            <div class="tag-hidden">
+                <p>40平出租屋大改造 美少女的混搭小窝</p><br/>
+                <p>经典清新简欧爱家 90平老房焕发新生</p><br/>
+                <p>新中式的酷色温情 66平撞色活泼家居</p><br/>
+                <p>瓷砖就像选好老婆 卫生间烟道的设计</p><br/>
+            </div>
+            <div class="tag-hidden">
+                <p>通州豪华3居260万 二环稀缺2居250w甩</p><br/>
+                <p>西3环通透2居290万 130万2居限量抢购</p><br/>
+                <p>黄城根小学学区仅260万 121平70万抛!</p><br/>
+                <p>独家别墅280万 苏州桥2居优惠价248万</p><br/>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function () {
+            var lis =document.getElementsByTagName('li');
+            for(var i = 0;i < lis.length;i++){
+                var divs = document.querySelector('.u-content').getElementsByTagName('div');
+                lis[i].onclick = function () {
+                    for(var j =0;j < lis.length;j++){
+                            lis[j].className = "";
+                            divs[j].className = "tag-hidden";
+                    }
+                    this.className = "actived";
+                    divs[this.getAttribute('index') -1].className = "tag-actived";
+                }
+            }
+
+        })()
+    </script>
+</body>
+</html>

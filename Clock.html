@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Clock</title>
+    <style>
+        *{
+            padding: 0;margin: 0;
+        }
+        body,html{width: 100%;height: 100%}
+        div{
+            text-align: center;
+            margin: 250px auto;
+        }
+        div #clock{border: 1px solid #f00;}
+    </style>
+</head>
+<body>
+    <div>
+        <canvas id="clock" width="300px" height="300px"></canvas>
+    </div>
+    <script>
+        (function () {
+            var ca = document.getElementById('clock');
+            var ctx = ca.getContext('2d');
+            var width = ctx.canvas.width;
+            var height = ctx.canvas.height;
+            var r = width / 2;
+            var rem = width / 200; /* 200宽度的基准 */
+
+            /* 画外圆框 */
+            function  drawGround() {
+                ctx.save();
+                ctx.translate(r,r);
+                ctx.beginPath();
+                ctx.lineWidth = 10 * rem;
+                ctx.arc(0,0,r - ctx.lineWidth / 2,0,2 * Math.PI,false);
+                ctx.stroke();
+                /* 画数字 */
+                var numbers = [3,4,5,6,7,8,9,10,11,12,1,2];
+                ctx.font = 18 * rem + 'px serif';
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                numbers.forEach(function (numbers,i) {
+                    var rad = 2 * Math.PI / 12 * i;
+                    var x = Math.cos(rad) * (r - 30 * rem);
+                    var y = Math.sin(rad) * (r - 30 * rem);
+                    ctx.fillText(numbers,x,y);
+                });
+                /* 画60个圆点 */
+                for(var i = 0;i < 60;i++){
+                    var rad2 = 2 * Math.PI / 60 * i;
+                    var x2 = Math.cos(rad2) * (r - 18 * rem);
+                    var y2 = Math.sin(rad2) * (r - 18 * rem);
+                    ctx.beginPath();
+                    if(i % 5 === 0){
+                        ctx.fillStyle = "#000";
+                        ctx.arc(x2,y2,2 * rem,0,2 * Math.PI,false);
+                    }else{
+                        ctx.fillStyle = "#ccc";
+                        ctx.arc(x2,y2,2 * rem,0,2 * Math.PI,false);
+                    }
+                    ctx.fill();
+                }
+            }
+            /* 画时针 */
+            function drawHour(hour,minute) {
+                ctx.save();
+                ctx.beginPath();
+                ctx.lineWidth = 4 * rem;
+                ctx.lineCap = "round";
+                var radH = 2 * Math.PI / 12 * hour;
+                var radM = 2 * Math.PI / 12 / 60 * minute;
+                ctx.rotate(radH + radM);
+                ctx.moveTo(0,3 * rem);
+                ctx.lineTo(0,-r / 2);
+                ctx.stroke();
+                ctx.restore();
+            }
+            /* 画分针 */
+            function drawMinute(minute) {
+                ctx.save();
+                ctx.beginPath();
+                ctx.lineWidth = 3 * rem;
+                var radM = 2 * Math.PI / 60 * minute;
+                ctx.rotate(radM);
+                ctx.moveTo(0,9 * rem);
+                ctx.lineTo(0,-r + 38 * rem);
+                ctx.stroke();
+                ctx.restore();
+            }
+            /* 画秒针 */
+            function drawSecond(second) {
+                ctx.save();
+                ctx.beginPath();
+                ctx.lineWidth = rem;
+                ctx.fillStyle = "#f00";
+                var radS = 2 * Math.PI / 60 * second;
+                ctx.rotate(radS);
+                ctx.moveTo(-2 * rem,20 * rem);
+                ctx.lineTo(2 * rem,20 * rem);
+                ctx.lineTo(1,-r + 40 * rem);
+                ctx.lineTo(-1,-r + 40 * rem);
+                ctx.lineTo(-2 * rem,20 * rem);
+                ctx.fill();
+                ctx.restore();
+            }
+            /* 画原点 */
+            function drawDot() {
+                ctx.beginPath();
+                ctx.fillStyle = "#fff";
+                ctx.arc(0,0,3 * rem,0,2 * Math.PI,false);
+                ctx.fill();
+            }
+
+            function draw() {
+                ctx.clearRect(0,0,width,height);
+                var d = new Date();
+                var h = d.getHours();
+                var m = d.getMinutes();
+                var s = d.getSeconds();
+                drawGround();
+                drawHour(h,m);
+                drawMinute(m);
+                drawSecond(s);
+                drawDot();
+                ctx.restore();
+            }
+
+            draw();
+            var t = setInterval(draw,1000);
+        })()
+    </script>
+</body>
+</html>
