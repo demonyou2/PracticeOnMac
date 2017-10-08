@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>magnifier</title>
+    <style>
+        #canvas{
+            display: block;
+            border: 1px solid #ccc;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <canvas id="offcanvas" style="display: none;"></canvas>
+    <script>
+        (function () {
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+            var offcanvas = document.querySelector('#offcanvas');
+            var offcontext = offcanvas.getContext('2d');
+
+            var img = new Image();
+            var ismousedown = false;
+            var scale = 0;
+            window.onload = function () {
+                canvas.width = 1152;
+                canvas.height = 768;
+                img.src = "img/img-lg.jpg";
+                offcanvas.width = img.width;
+                offcanvas.height = img.height;
+                scale = offcanvas.height / canvas.height;
+
+                img.onload = function () {
+                    context.drawImage(img , 0 , 0 ,canvas.width , canvas.height);
+                    offcontext.drawImage(img , 0 , 0 ,offcanvas.width , offcanvas.height);
+                };
+            };
+            function  getPoint (x,y) {
+                var bbox = canvas.getBoundingClientRect();
+                return {x: x- bbox.left,y: y - bbox.top}
+            }
+
+            canvas.onmousedown = function (event) {
+                event.preventDefault();
+                var point = getPoint(event.clientX,event.clientY);
+                ismousedown = true;
+                drawmagnifier(true,point);
+            };
+
+            canvas.onmousemove = function (event) {
+                event.preventDefault();
+                var point = getPoint(event.clientX,event.clientY);
+                if(ismousedown === true){
+                    drawmagnifier(true,point);
+                }
+            };
+
+            canvas.onmouseup = function (event) {
+                event.preventDefault();
+                ismousedown = false;
+                drawmagnifier(false);
+            };
+
+            canvas.onmouseout = function (event) {
+                event.preventDefault();
+                ismousedown = false;
+                drawmagnifier(false);
+            };
+
+            function drawmagnifier(ismag,point) {
+                context.clearRect(0,0,canvas.width,canvas.height);
+                context.drawImage(img , 0 , 0 ,canvas.width , canvas.height);
+                if(ismag === true){
+                    drawit(point);
+                }
+            }
+            function drawit(point) {
+                var cx = point.x * scale;
+                var cy = point.y * scale;
+                var mr = 200;
+                var sx = cx - mr;
+                var sy = cy - mr;
+                var dx = point.x - mr;
+                var dy = point.y - mr;
+                context.save();
+                context.beginPath();
+                context.arc(point.x,point.y,mr,0,2*Math.PI);
+                context.clip();
+                context.drawImage(offcanvas,sx,sy,2*mr,2*mr,dx,dy,2*mr,2*mr);
+                context.restore();
+            }
+        })()
+    </script>
+</body>
+</html>

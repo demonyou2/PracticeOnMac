@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DirtyPic</title>
+    <style>
+        .content{
+            width: 1700px;margin: 20px auto;
+        }
+        canvas{
+            border: 1px solid #000;
+            margin-top: 20px;
+        }
+        .bnt{
+            text-align: center;
+            font-size: 20px;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <canvas id="canvasa" width="800" height="560"></canvas>
+        <canvas id="canvasb" width="800" height="560"></canvas>
+    </div>
+    <div class="bnt">
+        <a href="javascript: fil()">Filter</a>
+        <a href="javascript: grey()">Begrey</a>
+        <a href="javascript: black()">Beblack</a>
+        <a href="javascript: reverse()">Bereverse</a>
+        <!--<a href="javascript: blurefect()">blurEfect</a>-->
+    </div>
+    <script>
+//        (function () {
+            var canvasa = document.getElementById('canvasa');
+            var contexta = canvasa.getContext('2d');
+            var canvasb = document.querySelector('#canvasb');
+            var contextb = canvasb.getContext('2d');
+
+            var img = new  Image();
+            window.onload = function () {
+                img.src = "img/autumn.jpg";
+                img.onload = function () {
+                    contexta.drawImage(img,0,0,canvasa.width,canvasb.height);
+                };
+            };
+
+            function fil() {
+                var imgData = contexta.getImageData(0,0,canvasa.width,canvasa.height);
+//                console.log(imgData.data);
+                var pixeldata = imgData.data;
+                for(var i = 0; i < canvasa.width * canvasa.height;i++){
+//                    pixeldata[4 * i + 0] = 0;
+//                    pixeldata[4 * i + 1] = 0;
+                    pixeldata[4 * i + 2] = 0;
+                }
+                contextb.putImageData(imgData,0,0,50,50,canvasb.width -100,canvasb.height - 100);
+            }
+            /* 灰色滤镜 */
+            function grey() {
+                var imgData = contexta.getImageData(0,0,canvasa.width,canvasa.height);
+                var pixeldata = imgData.data;
+                for(var i = 0; i < canvasa.width * canvasa.height;i++){
+                    var r = pixeldata[4 * i + 0];
+                    var g = pixeldata[4 * i + 1];
+                    var b = pixeldata[4 * i + 2];
+                    var gre = r * 0.3 + g * 0.59 + b * 0.11;
+                    pixeldata[4 * i + 0] = gre;
+                    pixeldata[4 * i + 1] = gre;
+                    pixeldata[4 * i + 2] = gre;
+                }
+                contextb.putImageData(imgData,0,0,0,0,canvasb.width,canvasb.height);
+            }
+            /* 黑白 */
+            function black() {
+                var imgData = contexta.getImageData(0,0,canvasa.width,canvasa.height);
+                var pixeldata = imgData.data;
+                for(var i = 0; i < canvasa.width * canvasa.height;i++){
+                    var r = pixeldata[4 * i + 0];
+                    var g = pixeldata[4 * i + 1];
+                    var b = pixeldata[4 * i + 2];
+                    var gre = r * 0.3 + g * 0.59 + b * 0.11;
+                    var v = 0;
+                    if(gre > 255 / 2){
+                        v = 255;
+                    }else{
+                        v = 0;
+                    }
+                    pixeldata[4 * i + 0] = v;
+                    pixeldata[4 * i + 1] = v;
+                    pixeldata[4 * i + 2] = v;
+                }
+                contextb.putImageData(imgData,0,0,0,0,canvasb.width,canvasb.height);
+            }
+            /* 反色 */
+            function reverse() {
+                var imgData = contexta.getImageData(0,0,canvasa.width,canvasa.height);
+                var pixeldata = imgData.data;
+                for(var i = 0; i < canvasa.width * canvasa.height;i++){
+                    var r = pixeldata[4 * i + 0];
+                    var g = pixeldata[4 * i + 1];
+                    var b = pixeldata[4 * i + 2];
+
+                    pixeldata[4 * i + 0] = 255 - r;
+                    pixeldata[4 * i + 1] = 255 - g;
+                    pixeldata[4 * i + 2] = 255 - b;
+                }
+                contextb.putImageData(imgData,0,0,0,0,canvasb.width,canvasb.height);
+            }
+
+            /* 模糊 */
+//            function blurefect() {
+//                var tmpimgData = contexta.getImageData(0,0,canvasa.width,canvasa.height);
+//                var tmppixeldata = tmpimgData.data;
+//
+//                var imgData = contexta.getImageData(0,0,canvasa.width,canvasa.height);
+//                var pixeldata = imgData.data;
+//                var blurR = 3;
+//                var n = (2 * blurR + 1) * (2 * blurR + 1);
+//
+//                for(var i = blurR; i < canvasa.width - blurR;i++){
+//                    for(var j = blurR; j < canvasa.height - blurR;j++){
+//
+//                        var sa = 0,sg = 0,sb = 0;
+//                        for(var dx = -blurR;dx <= blurR;dx++){
+//                            for(var dy = -blurR;dy <= blurR;dy++){
+//                                var x = i + dx;
+//                                var y = j + dy;
+//                                var p = x * canvasa.width + y;
+//                                sa += tmpimgData[p * 4 + 0];
+//                                sg += tmpimgData[p * 4 + 1];
+//                                sb += tmpimgData[p * 4 + 2];
+//                            }
+//                        }
+//                        var P = i * canvasa.width + j;
+//                        pixeldata[P * 4 + 0] = sa / n;
+//                        pixeldata[P * 4 + 1] = sg / n;
+//                        pixeldata[P * 4 + 2] = sb / n;
+//                    }
+//                }
+//                contextb.putImageData(imgData,0,0,0,0,canvasb.width,canvasb.height);
+//            }
+//        })()
+    </script>
+</body>
+</html>
