@@ -7,4 +7,5 @@
 5.移动端h5(迎春)[demo](https://demonyou2.github.io/PracticeOnMac/YinChun/index.html)<br/>
 6.时钟[demo](https://demonyou2.github.io/PracticeOnMac/Clock.html)<br/>
 7.简易Tab[demo](https://demonyou2.github.io/PracticeOnMac/Tab.html)<br/>
+8.canvas[demo1](https://demonyou2.github.io/PracticeOnMac/canvasImg/index.html) [demo2](https://demonyou2.github.io/PracticeOnMac/canvasImg/index2.html) [demo3](https://demonyou2.github.io/PracticeOnMac/canvasImg/index3.html)<br/>
 
